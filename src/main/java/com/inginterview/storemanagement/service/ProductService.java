@@ -37,7 +37,7 @@ public class ProductService {
     }
 
     public void update(Long id, ProductRequest productRequest) {
-        boolean exists = productRepository.existsById(id);
+        final var exists = productRepository.existsById(id);
         if (!exists) {
             throw new ProductNotFoundException("Product with id " + id + " not found");
         }
