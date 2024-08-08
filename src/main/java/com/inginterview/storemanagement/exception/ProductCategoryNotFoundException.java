@@ -1,6 +1,6 @@
 package com.inginterview.storemanagement.exception;
 
-public class ProductCategoryNotFoundException extends RuntimeException {
+public class ProductCategoryNotFoundException extends UserDefinedRestControllerException {
 
     public ProductCategoryNotFoundException(String message) {
         super(message);

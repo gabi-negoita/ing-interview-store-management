@@ -1,6 +1,6 @@
 package com.inginterview.storemanagement.exception;
 
-public class ProductNotFoundException extends RuntimeException {
+public class ProductNotFoundException extends UserDefinedRestControllerException {
 
     public ProductNotFoundException(String message) {
         super(message);
