@@ -1,4 +1,4 @@
-package com.inginterview.storemanagement.config;
+package com.inginterview.storemanagement.exception.handler;
 
 import com.inginterview.storemanagement.exception.UserDefinedRestControllerException;
 import com.inginterview.storemanagement.model.ErrorResponse;
