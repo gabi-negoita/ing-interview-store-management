@@ -2,6 +2,7 @@ package com.inginterview.storemanagement.controller;
 
 import com.inginterview.storemanagement.entity.Product;
 import com.inginterview.storemanagement.model.ProductRequest;
+import com.inginterview.storemanagement.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,34 +23,36 @@ import java.util.List;
 @RequestMapping(value = "/products")
 public class ProductRestController {
 
+    private final ProductService productService;
+
     @GetMapping(value = "")
     @ResponseStatus(HttpStatus.OK)
     public List<Product> getAll() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return productService.getAll();
     }
 
     @GetMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Product getById(@PathVariable Long id) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return productService.getById(id);
     }
 
     @PostMapping(value = "")
     @ResponseStatus(HttpStatus.CREATED)
     public Product create(@Valid @RequestBody ProductRequest product) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return productService.create(product);
     }
 
     @PutMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@PathVariable Long id,
                        @Valid @RequestBody ProductRequest product) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        productService.update(id, product);
     }
 
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        productService.deleteById(id);
     }
 }
