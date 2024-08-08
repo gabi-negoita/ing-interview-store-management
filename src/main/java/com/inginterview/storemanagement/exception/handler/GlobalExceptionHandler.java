@@ -1,6 +1,7 @@
 package com.inginterview.storemanagement.exception.handler;
 
-import com.inginterview.storemanagement.exception.UserDefinedRestControllerException;
+import com.inginterview.storemanagement.exception.EntityAlreadyExistsException;
+import com.inginterview.storemanagement.exception.EntityNotFoundException;
 import com.inginterview.storemanagement.model.ErrorResponse;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import java.util.List;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.CONFLICT;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @ControllerAdvice
@@ -31,8 +33,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, BAD_REQUEST);
     }
 
-    @ExceptionHandler(value = UserDefinedRestControllerException.class)
-    public ResponseEntity<ErrorResponse> handleUserDefinedException(UserDefinedRestControllerException exception) {
+    @ExceptionHandler(value = EntityNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleEntityNotFoundException(EntityNotFoundException exception) {
         final var errorResponse = ErrorResponse.builder()
                 .status(NOT_FOUND.value())
                 .errors(List.of(exception.getMessage()))
@@ -40,5 +42,16 @@ public class GlobalExceptionHandler {
                 .build();
 
         return new ResponseEntity<>(errorResponse, NOT_FOUND);
+    }
+
+    @ExceptionHandler(value = EntityAlreadyExistsException.class)
+    public ResponseEntity<ErrorResponse> handleEntityAlreadyExistsException(EntityAlreadyExistsException exception) {
+        final var errorResponse = ErrorResponse.builder()
+                .status(CONFLICT.value())
+                .errors(List.of(exception.getMessage()))
+                .timestamp(System.currentTimeMillis())
+                .build();
+
+        return new ResponseEntity<>(errorResponse, CONFLICT);
     }
 }
