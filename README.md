@@ -3,11 +3,12 @@
 ## Description
 
 ISM (Ing Store Management) Service is a service that provides the ability to manage products in a store.
-Provides a REST API for CRUD operations for managing products.
+Provides a REST API for CRUD operations for managing products and product categories.
 
 It uses an in-memory database (H2) to store the data.
-When running the application, the database is creating the schema (see `schema.sql`) and inserting some data into the
-tables (see `data.sql`), which is done by using these properties in the `application.properties` file:
+When running the application, the database creates the schema (defined in the `schema.sql` file) and
+inserts data into the tables (defined in the `data.sql` file), which is done by using these properties
+in the `application.properties` file:
 
 ```
 spring.jpa.defer-datasource-initialization=true
@@ -24,7 +25,7 @@ spring.datasource.username=sa
 spring.datasource.password=pass
 ```
 
-The application will run at a port specified by this property in the `application.properties` file:
+The application will run at a **port** specified by this property in the `application.properties` file:
 
 ```
 server.port=9090
@@ -45,8 +46,13 @@ server.servlet.context-path=/ism/v1
 
 ### Steps
 
-1. Clone the repository
-2. Build the project: will compile, run tests and package your application into a `.jar` file
+##### Clone the repository
+
+```
+git clone https://github.com/gabi-negoita/ing-interview-store-management.git
+```
+
+2. Build the project: it will compile, run tests and package your application into a `.jar` file
 
 ```
 ./mvnw clean install
