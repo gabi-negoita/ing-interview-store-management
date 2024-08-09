@@ -1,12 +1,18 @@
 -- Roles
-INSERT INTO role (name) VALUES ('ROLE_USER'), ('ROLE_ADMIN');
+INSERT INTO role (name) VALUES
+('ROLE_USER'),
+('ROLE_ADMIN');
 
 -- Permissions
 INSERT INTO permission (name) VALUES
+('products'),
 ('products:read'),
 ('products:write'),
+('products:delete'),
+('product-categories'),
 ('product-categories:read'),
-('product-categories:write');
+('product-categories:write'),
+('product-categories:delete');
 
 -- Insert into users
 INSERT INTO ism_user (username, password, enabled) VALUES
@@ -14,10 +20,16 @@ INSERT INTO ism_user (username, password, enabled) VALUES
 ('admin', '$2a$10$5zGg4yUcG7VdB8aHozqcBe3L9RKbEknzchjEqh861HLHhvIGxG7f.', true);
 
 -- Associate roles with users
-INSERT INTO user_role (user_id, role_id) VALUES (1, 1), (2, 2);
+INSERT INTO user_role (user_id, role_id) VALUES
+(1, 1),
+(2, 2);
 
 -- Associate permissions with roles
-INSERT INTO role_permission (role_id, permission_id) VALUES (1, 1), (2, 1), (2, 2);
+INSERT INTO role_permission (role_id, permission_id) VALUES
+(1, 2),
+(1, 6),
+(2, 1),
+(2, 5);
 
 -- Product categories
 INSERT INTO product_category (name, description) VALUES ('Books', 'A wide range of fiction and non-fiction books.');
