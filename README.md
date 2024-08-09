@@ -3,7 +3,7 @@
 ## Description
 
 ISM (Ing Store Management) Service is a service that provides the ability to manage products in a store.
-Provides a REST API for CRUD operations for managing products and product categories.
+Provides secured REST API endpoints for CRUD operations to manage products and product categories.
 
 It uses an in-memory database (H2) to store the data.
 When running the application, the database creates the schema (defined in the `schema.sql` file) and
