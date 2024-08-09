@@ -2,6 +2,7 @@ package com.inginterview.storemanagement.service;
 
 import com.inginterview.storemanagement.exception.InvalidTokenException;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -50,11 +51,10 @@ public class TokenAuthenticationService {
 
     public boolean isValid(String token) {
         try {
-            // Try to extract the claims - if it works, the token is valid
-            getPayload(token);
+            getPayload(token); // Throws an JwtException exception if the token is invalid
             return true;
-        } catch (Exception e) {
-            throw new InvalidTokenException("Invalid token");
+        } catch (JwtException exception) {
+            throw new InvalidTokenException("Token is invalid", exception);
         }
     }
 

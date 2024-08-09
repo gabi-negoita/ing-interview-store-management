@@ -7,6 +7,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,6 +17,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
+import static com.inginterview.storemanagement.util.Endpoints.PUBLIC_ENDPOINTS;
 import static org.springframework.util.StringUtils.hasText;
 
 @Component
@@ -26,11 +28,20 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final TokenAuthenticationService tokenService;
     private final HttpRequestUtil httpRequestUtil;
 
-    @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-            throws ServletException, IOException {
-        final var token = httpRequestUtil.getTokenValue(request);
+    @Value("${server.servlet.context-path}")
+    private String basePath;
 
+    @Override
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain) throws ServletException, IOException {
+        // Skip public endpoints
+        if (PUBLIC_ENDPOINTS.contains(getRequestURIWithoutBasePath(request))) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        final var token = httpRequestUtil.getTokenValue(request);
         if (hasText(token) && tokenService.isValid(token)) {
             final var username = tokenService.getUsername(token);
 
@@ -42,6 +53,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         filterChain.doFilter(request, response);
+    }
+
+    private String getRequestURIWithoutBasePath(HttpServletRequest request) {
+        return request.getRequestURI().replace(basePath, "");
     }
 }
 

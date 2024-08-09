@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import static com.inginterview.storemanagement.util.Endpoints.PUBLIC_ENDPOINTS;
 import static org.springframework.http.HttpMethod.DELETE;
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
@@ -38,7 +39,7 @@ public class SecurityConfig {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers(POST, "/auth/token").permitAll()
+                        .requestMatchers(POST, PUBLIC_ENDPOINTS.toArray(new String[0])).permitAll()
 
                         .requestMatchers(GET, "/products/**").hasAnyAuthority("products", "products:read")
                         .requestMatchers(GET, "/product-categories/**").hasAnyAuthority("product-categories", "product-categories:read")
