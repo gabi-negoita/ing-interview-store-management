@@ -17,7 +17,7 @@ import java.util.Set;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-class ProductRestControllerTest extends AuthenticationIntegrationTest {
+class ProductRestControllerTest extends IntegrationWithAuthenticationTest {
 
     @Test
     void whenGetAllProducts_ifAuthenticated_thenReturnsListOfProducts() {

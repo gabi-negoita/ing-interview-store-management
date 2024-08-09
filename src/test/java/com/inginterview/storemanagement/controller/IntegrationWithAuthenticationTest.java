@@ -24,7 +24,7 @@ import static org.mockito.Mockito.when;
 
 @ActiveProfiles("integration-tests")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class AuthenticationIntegrationTest {
+class IntegrationWithAuthenticationTest {
 
     @Autowired
     protected TestRestTemplate restTemplate;
