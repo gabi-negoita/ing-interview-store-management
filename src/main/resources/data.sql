@@ -2,10 +2,16 @@
 INSERT INTO role (name) VALUES ('ROLE_USER'), ('ROLE_ADMIN');
 
 -- Permissions
-INSERT INTO permission (name) VALUES ('products:read'), ('products:write'), ('product-categories:read'), ('product-categories:write');
+INSERT INTO permission (name) VALUES
+('products:read'),
+('products:write'),
+('product-categories:read'),
+('product-categories:write');
 
 -- Insert into users
-INSERT INTO ism_user (username, password, enabled) VALUES ('user1', 'pass', true), ('admin1', 'pass', true);
+INSERT INTO ism_user (username, password, enabled) VALUES
+('user', '$2a$10$2mKtsuIQ4DjC2qp6n1pHuOO4l2clPfsF0z9VPkZbCyuxUJ31TEane', true),
+('admin', '$2a$10$5zGg4yUcG7VdB8aHozqcBe3L9RKbEknzchjEqh861HLHhvIGxG7f.', true);
 
 -- Associate roles with users
 INSERT INTO user_role (user_id, role_id) VALUES (1, 1), (2, 2);
