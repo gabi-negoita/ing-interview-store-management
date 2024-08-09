@@ -38,7 +38,7 @@ public class ProductCategoryRestController {
         return productCategoryService.getById(id);
     }
 
-    @GetMapping("/name/{name}")
+    @GetMapping(value = "/name/{name}")
     @ResponseStatus(HttpStatus.OK)
     public ProductCategory getByName(@PathVariable String name) {
         return productCategoryService.getByName(name);
