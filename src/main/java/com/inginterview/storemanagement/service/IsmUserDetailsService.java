@@ -21,7 +21,7 @@ public class IsmUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         final var user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UserNotFoundException("User not found"));
+                .orElseThrow(() -> new UserNotFoundException("Bad credentials"));
 
         final var authorities = user.getRoles().stream()
                 .flatMap(role -> role.getPermissions().stream())
