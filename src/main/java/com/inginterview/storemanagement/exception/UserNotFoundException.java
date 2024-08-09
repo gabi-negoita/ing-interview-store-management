@@ -1,6 +1,6 @@
 package com.inginterview.storemanagement.exception;
 
-public class UserNotFoundException extends EntityNotFoundException {
+public class UserNotFoundException extends UserDefinedAuthenticationException {
 
     public UserNotFoundException(String message) {
         super(message);
