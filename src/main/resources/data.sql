@@ -14,9 +14,9 @@ INSERT INTO permission (name) VALUES
 ('product-categories:write'),
 ('product-categories:delete');
 
--- Insert into users
+-- Insert into users (the password is "pass" encrypted with BCryptPasswordEncoder)
 INSERT INTO ism_user (username, password, enabled) VALUES
-('user', '$2a$10$2mKtsuIQ4DjC2qp6n1pHuOO4l2clPfsF0z9VPkZbCyuxUJ31TEane', true),
+('basic', '$2a$10$2mKtsuIQ4DjC2qp6n1pHuOO4l2clPfsF0z9VPkZbCyuxUJ31TEane', true),
 ('admin', '$2a$10$5zGg4yUcG7VdB8aHozqcBe3L9RKbEknzchjEqh861HLHhvIGxG7f.', true);
 
 -- Associate roles with users
