@@ -2,6 +2,7 @@ package com.inginterview.storemanagement.exception.handler;
 
 import com.inginterview.storemanagement.exception.EntityAlreadyExistsException;
 import com.inginterview.storemanagement.exception.EntityNotFoundException;
+import com.inginterview.storemanagement.exception.UserDefinedAuthenticationException;
 import com.inginterview.storemanagement.model.ErrorResponse;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import java.util.List;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.CONFLICT;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -53,5 +55,16 @@ public class GlobalExceptionHandler {
                 .build();
 
         return new ResponseEntity<>(errorResponse, CONFLICT);
+    }
+
+    @ExceptionHandler(value = UserDefinedAuthenticationException.class)
+    public ResponseEntity<ErrorResponse> handleUserDefinedAuthenticationException(UserDefinedAuthenticationException exception) {
+        final var errorResponse = ErrorResponse.builder()
+                .status(UNAUTHORIZED.value())
+                .errors(List.of(exception.getMessage()))
+                .timestamp(System.currentTimeMillis())
+                .build();
+
+        return new ResponseEntity<>(errorResponse, UNAUTHORIZED);
     }
 }
