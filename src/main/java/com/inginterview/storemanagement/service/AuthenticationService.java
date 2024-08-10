@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AuthenticationService {
 
+    private static final String TOKEN_TYPE = "Bearer";
+
     private final AuthenticationManager authenticationManager;
     private final TokenAuthenticationService tokenProvider;
 
@@ -22,7 +24,7 @@ public class AuthenticationService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         return JwtAuthenticationResponse.builder()
-                .tokenType("Bearer")
+                .tokenType(TOKEN_TYPE)
                 .accessToken(jwt)
                 .build();
     }

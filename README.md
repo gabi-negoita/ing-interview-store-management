@@ -56,7 +56,7 @@ Before running the ISM Service locally, ensure you have the following:
 
 1. **Java 17** installed
 2. **Git** installed (optional, as you can download the repository as a ZIP file)
-2. **Maven** installed (optional, as you can use the provided Maven Wrapper `mvnw`)
+3. **Maven** installed (optional, as you can use the provided Maven Wrapper `mvnw`)
 
 ### Steps to Get Started
 

@@ -4,5 +4,5 @@ import java.util.Set;
 
 public class Endpoints {
 
-    public static Set<String> PUBLIC_ENDPOINTS = Set.of("/auth/token");
+    public static final Set<String> PUBLIC_ENDPOINTS = Set.of("/auth/token");
 }
