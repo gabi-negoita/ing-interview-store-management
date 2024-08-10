@@ -39,7 +39,7 @@ spring.datasource.password=pass
 - **Port**: The application runs on a port specified by the `server.port` property:
 
     ```properties
-    server.port=9090
+    server.port=8080
     ```
 
 - **Base Path**: The base URL for all API endpoints is configured via the `server.servlet.context-path` property:
@@ -63,7 +63,7 @@ Before running the ISM Service locally, ensure you have the following:
 1. **Clone the Repository**:
 
     ```bash
-    git clone https://github.com/gabi-negoita/ing-interview-store-management.git
+    git clone https://github.com/gabi-negoita/ism-service.git
     ```
 
 2. **Build the Project**: This will compile the code, run tests, and package the application into a `.jar` file.
@@ -93,6 +93,7 @@ simplifies the setup and execution process. Ensure Docker is installed before us
 ### Prerequisites
 
 1. 🐳 **Docker** installed
+2. Maven installed (it uses the mvn command to build the project)
 
 ### Commands
 
@@ -112,6 +113,11 @@ simplifies the setup and execution process. Ensure Docker is installed before us
 
     ```bash
     make stop
+    ```
+- **Stop, Remove Container and Remove Image**: Stop and remove the running Docker container and the image created.
+
+    ```bash
+    make clean
     ```
 
 > ⚠️ Note that the application runs on port `8080` inside the Docker container and is mapped to port `9090` on the host,
